@@ -7,12 +7,14 @@ Game::Game()
     InitAudioDevice();
     eatSound = LoadSound("Sounds/eat.mp3");
     wallSound = LoadSound("Sounds/wall.mp3");
+    biteSound = LoadSound("Sounds/bite.mp3");
 }
 
 Game::~Game()
 {
     UnloadSound(eatSound);
     UnloadSound(wallSound);
+    UnloadSound(biteSound);
     CloseAudioDevice();
 }
 
@@ -61,10 +63,10 @@ void Game::checkCollisionFood()
 {
     if (Vector2Equals(snake.body[0], food.position))
     {
+        PlaySound(eatSound);
         food.position = food.generateRandomPoint(snake.body);
         snake.addSegment = 1;
         score++;
-        PlaySound(eatSound);
     }
 }
 
@@ -72,13 +74,13 @@ void Game::checkCollisionEdge()
 {
     if (snake.body[0].x == snake.cellCount || snake.body[0].x == -1)
     {
-        GameOver();
         PlaySound(wallSound);
+        GameOver();
     }
     if (snake.body[0].y == snake.cellCount || snake.body[0].y == -1)
     {
-        GameOver();
         PlaySound(wallSound);
+        GameOver();
     }
 }
 
@@ -88,6 +90,7 @@ void Game::checkCollisionTail()
     headLess.pop_front();
     if (!food.checkPoint(snake.body[0], headLess))
     {
+        PlaySound(biteSound);
         GameOver();
     }
 }
