@@ -43,7 +43,9 @@ int main()
 
         DrawText("Raylib Snake", (float)(offset - 5), 20, 40, DARKGREEN);
 
-        DrawText(TextFormat("%d", game.score), (float)(offset - 5), 760 + 75, 40, DARKGREEN);
+        DrawText("Score", (float)(offset - 5), 760 + 75, 40, DARKGREEN);
+
+        DrawText(TextFormat("%d", game.score), (float)(offset + 150), 760 + 75, 40, DARKGREEN);
 
         game.draw();
 
