@@ -28,6 +28,7 @@ void Game::update()
 {
     if (running)
     {
+
         snake.update();
         checkCollisionFood();
         checkCollisionEdge();

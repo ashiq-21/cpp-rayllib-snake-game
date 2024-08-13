@@ -1,19 +1,6 @@
 #include <game.h>
 
-double lastupdatetime = 0;
-
 int offset = 75;
-
-bool EventTriggered(double interval)
-{
-    double currentTime = GetTime();
-    if (currentTime - lastupdatetime >= interval)
-    {
-        lastupdatetime = currentTime;
-        return 1;
-    }
-    return 0;
-}
 
 int main()
 {
@@ -30,10 +17,7 @@ int main()
 
         game.HandleInput();
 
-        if (EventTriggered(0.2))
-        {
-            game.update();
-        }
+        game.update();
 
         ClearBackground(GREEN);
 

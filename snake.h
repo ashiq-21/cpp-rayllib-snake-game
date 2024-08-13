@@ -14,6 +14,7 @@ public:
     int cellCount;
     int offset;
     bool addSegment;
+    double lastTime;
     void draw();
     void update();
     void reset();

@@ -8,6 +8,7 @@ Snake::Snake()
     addSegment = 0;
     body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
     direction = {1, 0};
+    lastTime = 0;
 }
 
 void Snake::draw()
@@ -23,14 +24,18 @@ void Snake::draw()
 
 void Snake::update()
 {
-    body.push_front(Vector2Add(body[0], direction));
-    if (addSegment)
+    if (GetTime() - lastTime > 0.2)
     {
-        addSegment = 0;
-    }
-    else
-    {
-        body.pop_back();
+        body.push_front(Vector2Add(body[0], direction));
+        if (addSegment)
+        {
+            addSegment = 0;
+        }
+        else
+        {
+            body.pop_back();
+        }
+        lastTime = GetTime();
     }
 }
 
