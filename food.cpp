@@ -5,9 +5,7 @@ Food::Food(deque<Vector2> body)
     cellSize = 30;
     cellCount = 25;
     offset = 75;
-    Image img = LoadImage("img/food.png");
-    txt = LoadTextureFromImage(img);
-    UnloadImage(img);
+    txt = LoadTexture("img/food.png");
     position = generateRandomPoint(body);
 }
 
